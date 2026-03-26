@@ -17,8 +17,10 @@
 
 % 		HYPERREF
 %
+\PassOptionsToPackage{draft}{bookmark}
 \usepackage[
-	hidelinks=true % keine roten Markierungen bei Links
+	hidelinks, % keine roten Markierungen bei Links
+	bookmarks=false % Workaround fuer xdvipdfmx-Absturz unter XeLaTeX/TeX Live 2025
 ]{hyperref}
 
 % Zwei eigene Befehle zum Setzen von Autor und Titel. Ausserdem werden die PDF-Informationen richtig gesetzt.
@@ -112,6 +114,7 @@
 
 
 %		ALGORITHMS
+\usepackage{floatbytocbasic}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \renewcommand{\listalgorithmname}{Algorithmenverzeichnis }
@@ -124,13 +127,15 @@
 %\usepackage{mathptmx}  %Helvetica / Times New Roman fonts (2 lines)
 %\usepackage[scaled=.92]{helvet} %Helvetica / Times New Roman fonts (2 lines)
 \usepackage{courier}   % Courier for monospaced fonts
-\usepackage{fourier}   % Fourier/Utopia for rm text 
+\usepackage{fourier-otf}   % Fourier/Utopia for rm text with Unicode engines
 \addtokomafont{disposition}{\rmfamily} % Use serif-font for section headers
 \setkomafont{descriptionlabel}{\normalfont\bfseries} % Use bold serif-font for description labels
 
 %		PAGE HEADER / FOOTER
 %	    Warning: There are some redefinitions throughout the master.tex-file!  DON'T CHANGE THESE REDEFINITIONS!
 \RequirePackage[automark,headsepline,footsepline]{scrlayer-scrpage}
+\KOMAoptions{footheight=18.85002pt}
+\setlength{\footheight}{18.85002pt}
 \pagestyle{scrheadings}
 
 % Use e.g. \renewcommand*{\pnumfont}{\upshape\sffamily} for Sans Serif font in page header and footer  
@@ -139,7 +144,7 @@
 \renewcommand*{\footfont}{\upshape}
 \renewcommand{\chaptermarkformat}{}
 \RedeclareSectionCommand[beforeskip=0pt]{chapter}
-\clearscrheadfoot
+\clearpairofpagestyles
 
 \ifoot[\rule{0pt}{\ht\strutbox+\dp\strutbox}TH Mannheim]{\rule{0pt}{\ht\strutbox+\dp\strutbox}HS Mannheim}
 \ofoot[\rule{0pt}{\ht\strutbox+\dp\strutbox}\pagemark]{\rule{0pt}{\ht\strutbox+\dp\strutbox}\pagemark}
